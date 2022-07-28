@@ -83,11 +83,11 @@ const scissors = document.querySelector("#scissors");
 scissors.addEventListener("click", function(e) {
     //console.log(e.srcElement.id);
     if (roundCounter == 0) {
-        document.getElementById("gameEnd").innerText = "";
+        document.getElementById("endGame").innerText = "";
         intPlayerScore = 0;
         intComputerScore = 0;
-        playerScore.innerHTML = 0;
-        computerScore.innerHTML = 0;
+        playerScore.textContent = intPlayerScore;
+        computerScore.textContent = intComputerScore;
     }
     let result = playRound(e.srcElement.id, getComputerChoice());
     document.getElementById("roundResult").innerText = result;
@@ -104,16 +104,31 @@ scissors.addEventListener("click", function(e) {
     console.log("-----", roundCounter);
     console.log(intPlayerScore, intComputerScore);
     console.log(result);
-    if (roundCounter >= 5) {
-        document.getElementById("gameEnd").innerText = "Game Ended";
+    if (intComputerScore >= 5 || intPlayerScore >= 5) {
+        document.getElementById("endGame").innerHTML = "<button>Game Ended</button>";
         roundCounter = 0;
-        console.log("newgame", roundCounter);
+        console.log("new game", roundCounter);
+        //newGameButton();
     };
 });
 
 //const gameEnd = document.querySelector("#gameEnd");
+// function newGameButton() {
+//     document.getElementById("endGame").textContent = ' Play again ';
+// }
+
+const endGame = document.querySelector("#endGame");
+endGame.addEventListener("click", function(e) {
+    console.log(e);
+    roundCounter = 0;
+    document.getElementById("roundResult").textContent = "";
+    playerScore.textContent = 0;
+    computerScore.textContent = 0;
+    endGame.innerHTML = "";
+})
 
 
+// game for running on console
 function game() {
     // console.log("Let's play 5 rounds of Rock, Paper, Scissors :D")
     let myWins = 0;
