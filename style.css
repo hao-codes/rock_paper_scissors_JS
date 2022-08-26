@@ -8,3 +8,7 @@ body {
 .score {
     display: flex;
 }
+
+button:disabled {
+    appearance: normal;
+}
